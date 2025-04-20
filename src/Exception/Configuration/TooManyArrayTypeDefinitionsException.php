@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SunnyFlail\EasyConfigSerializer\Exception\Configuration;
 
-final class TooManyArrayTypeDefinitionsException extends \DomainException
+final class TooManyArrayTypeDefinitionsException extends \Exception implements ISchemaConfigurationException
 {
     public function __construct(
         public readonly \ReflectionProperty $property,

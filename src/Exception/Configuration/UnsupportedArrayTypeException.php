@@ -6,7 +6,7 @@ namespace SunnyFlail\EasyConfigSerializer\Exception\Configuration;
 
 use SunnyFlail\EasyConfigSerializer\Attribute\IArray;
 
-final class UnsupportedArrayTypeException extends \Exception
+final class UnsupportedArrayTypeException extends \Exception implements ISchemaConfigurationException
 {
     public function __construct(
         public readonly \ReflectionProperty $property,

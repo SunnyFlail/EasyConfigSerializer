@@ -26,6 +26,10 @@ final class ArrayTypeResolverAggregate implements IArrayTypeResolver
 
     public function registerTypeResolver(IArrayTypeResolver $typeResolver): void
     {
+        if (true === $typeResolver instanceof ArrayTypeResolverAggregate) {
+            throw new \LogicException('Cannot register aggregate as a resolver.');
+        }
+
         $this->arrayTypeResolvers[] = $typeResolver;
     }
 

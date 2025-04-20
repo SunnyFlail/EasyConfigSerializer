@@ -7,7 +7,7 @@ namespace SunnyFlail\EasyConfigSerializer\Exception\Configuration;
 use SunnyFlail\EasyConfigSerializer\PropertyDeserializer\IPropertyDeserializer;
 use SunnyFlail\EasyConfigSerializer\Types\IType;
 
-final class NotSupportedTypeDeserializationException extends \RuntimeException
+final class NotSupportedTypeDeserializationException extends \Exception implements ISchemaConfigurationException
 {
     public function __construct(
         public readonly IPropertyDeserializer $propertyDeserializer,

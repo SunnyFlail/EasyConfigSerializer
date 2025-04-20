@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SunnyFlail\EasyConfigSerializer\Exception\Configuration;
 
-final class PropertyTypeIsNotDefinedException extends \Exception
+final class PropertyTypeIsNotDefinedException extends \Exception implements ISchemaConfigurationException
 {
     public function __construct(
         public readonly \ReflectionProperty $property,

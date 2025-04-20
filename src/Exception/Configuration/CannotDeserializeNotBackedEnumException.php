@@ -6,7 +6,7 @@ namespace SunnyFlail\EasyConfigSerializer\Exception\Configuration;
 
 use SunnyFlail\EasyConfigSerializer\Types\ClassType;
 
-final class CannotDeserializeNotBackedEnumException extends \Exception
+final class CannotDeserializeNotBackedEnumException extends \Exception implements ISchemaConfigurationException
 {
     public function __construct(
         public readonly array $data,

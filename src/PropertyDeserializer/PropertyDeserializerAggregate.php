@@ -25,6 +25,10 @@ final class PropertyDeserializerAggregate implements IPropertyDeserializer
 
     public function registerDeserializer(IPropertyDeserializer $propertyDeserializer): void
     {
+        if (true === $propertyDeserializer instanceof PropertyDeserializerAggregate) {
+            throw new \LogicException('Cannot register aggregate as a deserializer.');
+        }
+
         $this->propertyDeserializers[] = $propertyDeserializer;
     }
 

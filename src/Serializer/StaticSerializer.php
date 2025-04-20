@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SunnyFlail\EasyConfigSerializer\Serializer;
 
 use SunnyFlail\EasyConfigSerializer\Data\IConfigSchema;
+use SunnyFlail\EasyConfigSerializer\Data\ISerialize;
 use SunnyFlail\EasyConfigSerializer\Exception\SchemaData\UnsupportedSchemaTypeException;
 
 final readonly class StaticSerializer implements ISerializer
@@ -17,8 +18,13 @@ final readonly class StaticSerializer implements ISerializer
 
     public function serialize(IConfigSchema $schema): array
     {
+        if (true === is_a($schema, ISerialize::class, true)) {
+            return $schema->serialize($this);
+        }
+
         $data = [];
-        $data[$schema::SCHEMA_TYPE_FIELD_NAME] = $schema::getSchemaType();
+        $schemaType = $schema::getSchemaType();
+        $data[$schema::SCHEMA_TYPE_FIELD_NAME] = $schemaType;
 
         foreach (get_object_vars($schema) as $key => $value) {
             if (null === $value) {

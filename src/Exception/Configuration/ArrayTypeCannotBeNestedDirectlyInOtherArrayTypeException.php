@@ -6,7 +6,7 @@ namespace SunnyFlail\EasyConfigSerializer\Exception\Configuration;
 
 use SunnyFlail\EasyConfigSerializer\Types\ArrayType;
 
-final class ArrayTypeCannotBeNestedDirectlyInOtherArrayTypeException extends \Exception
+final class ArrayTypeCannotBeNestedDirectlyInOtherArrayTypeException extends \Exception implements ISchemaConfigurationException
 {
     public function __construct(
         public readonly ArrayType $type,

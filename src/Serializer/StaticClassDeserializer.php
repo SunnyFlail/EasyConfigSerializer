@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace SunnyFlail\EasyConfigSerializer\Serializer;
 
 use SunnyFlail\EasyConfigSerializer\Data\IConfigSchema;
-use SunnyFlail\EasyConfigSerializer\Data\ICustomDeserializable;
+use SunnyFlail\EasyConfigSerializer\Data\ICanDeserializer;
+use SunnyFlail\EasyConfigSerializer\Data\IDeserialize;
 use SunnyFlail\EasyConfigSerializer\Data\IValidable;
 use SunnyFlail\EasyConfigSerializer\Exception\Configuration\PropertyTypeIsNotDefinedException;
 use SunnyFlail\EasyConfigSerializer\Exception\Schema\ISchemaValidationException;
@@ -27,7 +28,7 @@ final readonly class StaticClassDeserializer implements IClassDeserializer
     public function canDeserialize(array $data, string $classFQCN): bool
     {
         if (
-            true === is_a($classFQCN, ICustomDeserializable::class, true)
+            true === is_a($classFQCN, ICanDeserializer::class, true)
             && false === $classFQCN::canDeserialize($data)
         ) {
             return false;
@@ -41,7 +42,7 @@ final readonly class StaticClassDeserializer implements IClassDeserializer
     }
 
     /**
-     * @template TClass
+     * @template TClass of IConfigSchema
      *
      * @param class-string<TClass> $classFQCN
      *
@@ -53,6 +54,10 @@ final readonly class StaticClassDeserializer implements IClassDeserializer
     {
         if (false === self::canDeserialize($data, $classFQCN)) {
             throw new \InvalidArgumentException('Unsupported data');
+        }
+
+        if (true === \is_a($classFQCN, IDeserialize::class, true)) {
+            return $classFQCN::deserialize($data, $this);
         }
 
         $reflection = new \ReflectionClass($classFQCN);
