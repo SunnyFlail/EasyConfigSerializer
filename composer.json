@@ -1,0 +1,18 @@
+{
+    "name": "sunnyflail/misc",
+    "autoload": {
+        "psr-4": {
+            "SunnyFlail\\EasyConfigSerializer\\": "src/",
+            "SunnyFlail\\EasyConfigSerializer\\Tests": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sunnyflail",
+            "email": "sunny.flail@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^12.1"
+    }
+}
