@@ -1,5 +1,5 @@
 {
-    "name": "sunnyflail/misc",
+    "name": "sunnyflail/easy-config-serializer",
     "autoload": {
         "psr-4": {
             "SunnyFlail\\EasyConfigSerializer\\": "src/",
