@@ -3,7 +3,7 @@
     "autoload": {
         "psr-4": {
             "SunnyFlail\\EasyConfigSerializer\\": "src/",
-            "SunnyFlail\\EasyConfigSerializer\\Tests": "tests/"
+            "SunnyFlail\\EasyConfigSerializer\\Tests\\": "tests/"
         }
     },
     "authors": [
